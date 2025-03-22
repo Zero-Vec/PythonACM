@@ -41,17 +41,20 @@ bfs(A, B, dis1)
 bfs(C, D, dis2)
 ans = dis1[C][D]
 # print(ans)
-if ans <= E:
-    print(ans)
+if ans == inf:
+    print('No')
 else:
-    res = inf
-    # 枚举每个圣水位置
-    for i in range(n):
-        for j in range(m):
-            if mp[i][j] == 'V' and dis1[i][j] <= E:
-                res = min(res, dis1[i][j] + dis2[i][j])
-    # 初始有 E，总共是 res，圣水到终点需要 res - E，加上等待时间，则需要两倍
-    if res == inf:
-        print('No')
+    if ans <= E:
+        print(ans)
     else:
-        print(E + (res - E) * 2)
+        res = inf
+        # 枚举每个圣水位置
+        for i in range(n):
+            for j in range(m):
+                if mp[i][j] == 'V' and dis1[i][j] <= E:
+                    res = min(res, dis1[i][j] + dis2[i][j])
+        # 初始有 E，总共是 res，圣水到终点需要 res - E，加上等待时间，则需要两倍
+        if res == inf:
+            print('No')
+        else:
+            print(E + (res - E) * 2)
